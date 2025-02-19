@@ -1,23 +1,24 @@
-// server.js
-const express = require('express');
+import express from 'express';
+import { connectDB } from './config/db';
+import Employee from './models/empleadoModel';
+
 const app = express();
-const db = require('./db');
-const port = 3000;
 
-// Middleware para parsear el cuerpo de las solicitudes como JSON
-app.use(express.json());
+// Conectar a la base de datos
+connectDB();
 
-// Ruta de ejemplo: obtener todos los usuarios
-app.get('/usuarios', (req, res) => {
-  db.query('SELECT * FROM usuarios', (err, results) => {
-    if (err) {
-      return res.status(500).send({ error: 'Error al obtener los usuarios' });
-    }
-    res.json(results);
-  });
-});
+// Sincronizar modelos
+async function syncModels() {
+  try {
+    await Employee.sync();  // Esto crea la tabla en MySQL si no existe
+    console.log('Modelo de Employee sincronizado');
+  } catch (error) {
+    console.error('Error sincronizando los modelos:', error);
+  }
+}
 
-// Iniciar el servidor
-app.listen(port, () => {
-  console.log(`Servidor API corriendo en http://localhost:${port}`);
+syncModels();
+
+app.listen(3000, () => {
+  console.log('Servidor corriendo en el puerto 3000');
 });

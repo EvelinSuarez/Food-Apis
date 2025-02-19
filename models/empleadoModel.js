@@ -1,32 +1,60 @@
 import { DataTypes } from 'sequelize';
-import { define } from '../config/db';
+import { sequelize } from '../config/db';  // Usamos la instancia de sequelize exportada desde db.js
 
-const Employee = define('Employee', {
+const Employee = sequelize.define('Employee', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  firstName: {
+  tipoDocumento: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  lastName: {
+  documento: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  email: {
+  nombreCompleto: {
     type: DataTypes.STRING,
     unique: true,
     allowNull: false,
   },
-  position: {
+  fechaIngreso: {
+    type: DataTypes.DATE,  // Usar tipo DATE en lugar de STRING para fechas
+    allowNull: false,
+  },
+  contactoEmergencia: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  parentesco: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  nombreFamiliar: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  tipoSangre: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  numeroSeguridadSocial: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  direccion: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  tipoContrato: {
     type: DataTypes.STRING,
     allowNull: false,
   },
 }, {
-  timestamps: false,
-  tableName: 'employees',
+  timestamps: false,  // Desactivamos los campos createdAt/updatedAt
+  tableName: 'empleado',  // Especificamos el nombre de la tabla
 });
 
 export default Employee;
