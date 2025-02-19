@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import { sequelize } from '../config/db';  // Usamos la instancia de sequelize exportada desde db.js
+import { sequelize } from '../config/db.js';  // Usamos la instancia de sequelize exportada desde db.js
 
 const Employee = sequelize.define('Employee', {
   id: {

@@ -33,4 +33,5 @@ const connectDB = async () => {
   }
 };
 
-export default { sequelize, connectDB };
+// Exportar directamente sequelize y connectDB
+export { sequelize, connectDB };

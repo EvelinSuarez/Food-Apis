@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { getAllEmployees, getEmployeeById } from '../controllers/empleadosController';
-import { validateEmployeeId } from '../middlewares/validateEmpleado';
+import { getAllEmployees, getEmployeeById } from '../controllers/empleadosController.js';
+import { validateEmployeeId } from '../middlewares/validateEmpleado.js';
 const router = Router();
 
 router.get('/employees', getAllEmployees);
