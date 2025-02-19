@@ -1,4 +1,4 @@
-import Employee from '../models/empleadoModel'; // Modelo de Sequelize
+import Employee from '../models/empleadoModel.js'; // Modelo de Sequelize
 
 const getAllEmployees = async () => {
   return await Employee.findAll();
