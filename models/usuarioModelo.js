@@ -1,4 +1,6 @@
-import { UserSchema } from '../../schemas/mongodb/user/user.schema.js'
+import { DataTypes } from 'sequelize';
+import { sequelize } from '../config/db';  // Usamos la instancia de sequelize exportada desde db.js
+
 
 export class UserModel {
   async get () {
