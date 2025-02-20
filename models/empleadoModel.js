@@ -4,16 +4,16 @@ import { sequelize } from '../config/db.js';  // Usamos la instancia de sequeliz
 const Employee = sequelize.define('Employee', {
   id: {
     type: DataTypes.INTEGER,
-    primaryKey: true,  // Marca esta columna como clave primaria
-    autoIncrement: true,  // Marca la columna para autoincrementar
+    primaryKey: true,
+    autoIncrement: true,
     allowNull: false,
   },
   tipoDocumento: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,  // Si es opcional en tu base de datos
   },
   documento: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,  // Cambié esto a INTEGER para coincidir con tu base de datos
     allowNull: false,
   },
   nombreCompleto: {
@@ -22,40 +22,44 @@ const Employee = sequelize.define('Employee', {
     allowNull: false,
   },
   fechaIngreso: {
-    type: DataTypes.DATE,  // Usar tipo DATE en lugar de STRING para fechas
+    type: DataTypes.DATE,
     allowNull: false,
   },
   contactoEmergencia: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: DataTypes.INTEGER,  // Asegúrate de que sea INTEGER si es un número
+    allowNull: true,  // Este campo es opcional en tu base de datos
   },
   parentesco: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,  // Este campo es opcional en tu base de datos
   },
   nombreFamiliar: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,  // Este campo es opcional en tu base de datos
   },
   tipoSangre: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,  // Este campo es opcional en tu base de datos
   },
   numeroSeguridadSocial: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,  // Este campo es opcional en tu base de datos
   },
   direccion: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,  // Este campo es opcional en tu base de datos
   },
   tipoContrato: {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  estado: {
+    type: DataTypes.STRING,
+    allowNull: true,  // Este campo es opcional en tu base de datos
+  }
 }, {
-  timestamps: false,  // Desactivamos los campos createdAt/updatedAt
-  tableName: 'empleado',  // Especificamos el nombre de la tabla
+  timestamps: false,
+  tableName: 'empleado',
 });
 
 export default Employee;
