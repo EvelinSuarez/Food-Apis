@@ -1,10 +1,11 @@
-export class usuarioController {
+export class UserController {
     constructor ({ userModel }) {
       this.userModel = userModel
     }
   
     get = async (req, res) => {
       const data = await this.userModel.get()
+     
       res.status(200).json(data)
     }
   
