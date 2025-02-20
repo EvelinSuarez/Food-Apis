@@ -1,6 +1,8 @@
 import express from 'express';
 import { connectDB } from './config/db.js';
 import Employee from './models/empleadoModel.js';
+import clientes from './models/clientesModels.js';
+
 
 const app = express();
 
@@ -16,6 +18,16 @@ async function syncModels() {
     console.error('Error sincronizando los modelos:', error);
   }
 }
+
+// // Sincronizar modelos
+// async function syncModels() {
+//   try {
+//     await clientes.sync();  // Esto crea la tabla en MySQL si no existe
+//     console.log('Modelo de Clientes sincronizado');
+//   } catch (error) {
+//     console.error('Error sincronizando los modelos:', error);
+//   }
+// }
 
 syncModels();
 
