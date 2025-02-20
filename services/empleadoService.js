@@ -1,4 +1,5 @@
-import { getAllEmployees as _getAllEmployees, getEmployeeById as _getEmployeeById } from '../repositories/empleadoRepository';
+// employeeService.js
+import { getAllEmployees as _getAllEmployees, getEmployeeById as _getEmployeeById, createEmployee as _createEmployee, updateEmployee as _updateEmployee, deleteEmployee as _deleteEmployee } from '../repositories/empleadoRepository.js';
 
 const getAllEmployees = async () => {
   return await _getAllEmployees();
@@ -9,15 +10,15 @@ const getEmployeeById = async (id) => {
 };
 
 const createEmployee = async (data) => {
-  return await createEmployee(data);
+  return await _createEmployee(data); // Aquí llamas a la función del repositorio
 };
 
 const updateEmployee = async (id, data) => {
-  return await updateEmployee(id, data);
+  return await _updateEmployee(id, data); // Aquí llamas a la función del repositorio
 };
 
 const deleteEmployee = async (id) => {
-  return await deleteEmployee(id);
+  return await _deleteEmployee(id); // Aquí llamas a la función del repositorio
 };
 
 export default {
