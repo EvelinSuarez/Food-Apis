@@ -1,4 +1,4 @@
-const { body, validationResult } = require('express-validator');
+import { body, validationResult } from 'express-validator';
 
 const validateUser = [
   body('tipoDocumento').notEmpty().withMessage('El tipo de documento es obligatorio').isString().isLength({ max: 30 }),
@@ -22,7 +22,7 @@ const validateUser = [
     }
     next();
   }
-];
+];git 
 
-module.exports = validateUser;
+export default validateUser;
 

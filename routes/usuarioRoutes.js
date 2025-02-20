@@ -1,9 +1,18 @@
 import { Router } from 'express';
-import { EmployeesController } from '../controllers/usuario.controller.js';
-import validateUser, { validateEmployeeId } from '../middlewares/validateUsuario.js';
-const router = Router();
+import { UserController } from '../controllers/usuarioController.js';
+import  validateUser  from '../middlewares/validateUsuario.js';
 
-router.get('/', getAllUsers);
-router.get('/:id', validateUser );
 
-export default router;
+const routerUser = Router();
+
+
+import userService from '../services/usuarioService.js';
+const userController = new UserController({ userService });
+
+routerUser.get('/', userController.get);
+routerUser.get('/:id', validateUser, userController.getById);
+routerUser.post('/', validateUser, userController.post);
+routerUser.put('/:id', validateUser, userController.put);
+routerUser.delete('/:id', validateUser, userController.delete);
+
+export default routerUser;

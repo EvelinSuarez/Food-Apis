@@ -9,24 +9,24 @@ const User = sequelize.define('User', {
     allowNull: false,
   },
   tipoDocumento: {
-    type: DataTypes.STRING(30),
+    type: DataTypes.STRING,
     allowNull: false,
   },
   documento: {
-    type: DataTypes.STRING(30),
+    type: DataTypes.STRING,
     allowNull: false,
     unique: true, // No se puede repetir el documento
   },
   celular: {
-    type: DataTypes.STRING(15),
+    type: DataTypes.STRING,
     allowNull: false,
   },
   nombreCompleto: {
-    type: DataTypes.STRING(60),
+    type: DataTypes.STRING,
     allowNull: false,
   },
   correo: {
-    type: DataTypes.STRING(250),
+    type: DataTypes.STRING,
     allowNull: false,
     unique: true, // No se permite registrar un correo ya existente
     validate: {
@@ -54,6 +54,8 @@ const User = sequelize.define('User', {
       }
     }
   }
+ 
+
 }, {
   timestamps: false,  // Desactivamos createdAt y updatedAt
   tableName: 'usuario',  // Nombre de la tabla en la BD
