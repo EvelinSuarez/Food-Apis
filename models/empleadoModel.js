@@ -4,8 +4,9 @@ import { sequelize } from '../config/db.js';  // Usamos la instancia de sequeliz
 const Employee = sequelize.define('Employee', {
   id: {
     type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
+    primaryKey: true,  // Marca esta columna como clave primaria
+    autoIncrement: true,  // Marca la columna para autoincrementar
+    allowNull: false,
   },
   tipoDocumento: {
     type: DataTypes.STRING,

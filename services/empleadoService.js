@@ -1,4 +1,4 @@
-import { getAllEmployees as _getAllEmployees, getEmployeeById as _getEmployeeById } from '../repositories/empleadoRepository';
+import { getAllEmployees as _getAllEmployees, getEmployeeById as _getEmployeeById } from '../repositories/empleadoRepository.js';
 
 const getAllEmployees = async () => {
   return await _getAllEmployees();
