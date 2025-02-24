@@ -1,62 +1,62 @@
 import { DataTypes } from 'sequelize';
-import { sequelize } from '../config/db.js';  // Instancia de conexión con la base de datos
+import { sequelize } from '../config/db.js';  // Database connection instance
 
 const User = sequelize.define('User', {
-  idUsuario: {
+  idUser: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
     allowNull: false,
   },
-  tipoDocumento: {
-    type: DataTypes.STRING(30),
+  documentType: {
+    type: DataTypes.STRING,
     allowNull: false,
   },
-  documento: {
-    type: DataTypes.STRING(30),
+  document: {
+    type: DataTypes.STRING,
     allowNull: false,
-    unique: true, // No se puede repetir el documento
+    unique: true, // Document must be unique
   },
-  celular: {
-    type: DataTypes.STRING(15),
-    allowNull: false,
-  },
-  nombreCompleto: {
-    type: DataTypes.STRING(60),
+  cellphone: {
+    type: DataTypes.STRING,
     allowNull: false,
   },
-  correo: {
-    type: DataTypes.STRING(250),
+  fullName: {
+    type: DataTypes.STRING,
     allowNull: false,
-    unique: true, // No se permite registrar un correo ya existente
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true, // Email must be unique
     validate: {
-      isEmail: true, // Valida que sea un correo válido
+      isEmail: true, // Validates email format
     }
   },
-  rol: {
+  idRole: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  estado: {
+  state: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
-    defaultValue: true, // Activo por defecto
+    defaultValue: true, // Active by default
   },
-  contraseña: {
+  password: {
     type: DataTypes.STRING(255),
     allowNull: false,
   },
-  confirmarContraseña: {
-    type: DataTypes.VIRTUAL, // No se almacena en la BD, solo se usa para validación
+  confirmPassword: {
+    type: DataTypes.VIRTUAL, // Not stored in DB, used for validation
     set(value) {
-      if (value !== this.contraseña) {
-        throw new Error('Las contraseñas no coinciden');
+      if (value !== this.password) {
+        throw new Error('Passwords do not match');
       }
     }
   }
 }, {
-  timestamps: false,  // Desactivamos createdAt y updatedAt
-  tableName: 'usuario',  // Nombre de la tabla en la BD
+  timestamps: false,  // Disable createdAt and updatedAt
+  tableName: 'users',  // Table name in the database
 });
 
 export default User;

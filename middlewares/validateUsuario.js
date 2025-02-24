@@ -1,28 +1,27 @@
-const { body, validationResult } = require('express-validator');
+import { body, validationResult } from 'express-validator';
 
 const validateUser = [
-  body('tipoDocumento').notEmpty().withMessage('El tipo de documento es obligatorio').isString().isLength({ max: 30 }),
-  body('documento').notEmpty().withMessage('El número de documento es obligatorio').isString().isLength({ max: 30 }),
-  body('celular').optional().isString().isLength({ max: 15 }).withMessage('El celular debe tener máximo 15 caracteres'),
-  body('nombreCompleto').notEmpty().withMessage('El nombre completo es obligatorio').isString().isLength({ max: 60 }),
-  body('correo').notEmpty().withMessage('El correo es obligatorio').isEmail().isLength({ max: 250 }),
-  body('rol').notEmpty().withMessage('El rol es obligatorio').isInt(),
-  body('estado').isBoolean().withMessage('El estado debe ser booleano'),
-  body('contraseña').notEmpty().withMessage('La contraseña es obligatoria').isLength({ min: 8 }).withMessage('La contraseña debe tener al menos 8 caracteres'),
-  body('confirmarContraseña').custom((value, { req }) => {
-    if (value !== req.body.contraseña) {
-      throw new Error('Las contraseñas no coinciden');
+  body('documentType').notEmpty().withMessage('Document type is required').isString().isLength({ max: 30 }),
+  body('document').notEmpty().withMessage('Document number is required').isString().isLength({ max: 30 }),
+  body('cellphone').optional().isString().isLength({ max: 15 }).withMessage('Cellphone must have a maximum of 15 characters'),
+  body('fullName').notEmpty().withMessage('Full name is required').isString().isLength({ max: 60 }),
+  body('email').notEmpty().withMessage('Email is required').isEmail().isLength({ max: 250 }),
+  body('idRole').notEmpty().withMessage('Role is required').isInt(),
+  body('state').isBoolean().withMessage('State must be a boolean value'),
+  body('password').notEmpty().withMessage('Password is required').isLength({ min: 8 }).withMessage('Password must be at least 8 characters long'),
+  body('confirmPassword').custom((value, { req }) => {
+    if (value !== req.body.password) {
+      throw new Error('Passwords do not match');
     }
     return true;
   }),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errores: errors.array() });
+      return res.status(400).json({ errors: errors.array() });
     }
     next();
   }
 ];
 
-module.exports = validateUser;
-
+export default validateUser;
