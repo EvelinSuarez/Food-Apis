@@ -1,38 +1,29 @@
 import Employee from '../models/empleadoModel.js'; // Modelo de Sequelize
 
+const createEmployee = async (data) => {
+    return Employee.create(data);
+};
+
 const getAllEmployees = async () => {
-  return await Employee.findAll();
+    return Employee.findAll();
 };
 
 const getEmployeeById = async (id) => {
-  return await Employee.findByPk(id);
-};
-
-const createEmployee = async (data) => {
-  return await Employee.create(data);
+    return Employee.findByPk(id);
 };
 
 const updateEmployee = async (id, data) => {
-  const employee = await Employee.findByPk(id);
-  if (employee) {
-    return await employee.update(data);
-  }
-  return null;
+    return Employee.update(data, { where: { id } });
 };
 
 const deleteEmployee = async (id) => {
-  const employee = await Employee.findByPk(id);
-  if (employee) {
-    await employee.destroy();
-    return true;
-  }
-  return false;
+    return Employee.destroy({ where: { id } });
 };
 
 export {
-  getAllEmployees,
-  getEmployeeById,
-  createEmployee,
-  updateEmployee,
-  deleteEmployee,
+    createEmployee,
+    getAllEmployees,
+    getEmployeeById,
+    updateEmployee,
+    deleteEmployee,
 };
