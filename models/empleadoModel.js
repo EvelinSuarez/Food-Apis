@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import { sequelize } from '../config/db.js';  // Usamos la instancia de sequelize exportada desde db.js
+import sequelize from '../config/db.js';
 
 const Employee = sequelize.define('Employee', {
   id: {
@@ -10,10 +10,10 @@ const Employee = sequelize.define('Employee', {
   },
   tipoDocumento: {
     type: DataTypes.STRING,
-    allowNull: true,  // Si es opcional en tu base de datos
+    allowNull: true, 
   },
   documento: {
-    type: DataTypes.INTEGER,  // Cambié esto a INTEGER para coincidir con tu base de datos
+    type: DataTypes.INTEGER,  
     allowNull: false,
   },
   nombreCompleto: {
@@ -59,7 +59,7 @@ const Employee = sequelize.define('Employee', {
   }
 }, {
   timestamps: false,
-  tableName: 'empleado',
+  tableName: 'employee',
 });
 
 export default Employee;
